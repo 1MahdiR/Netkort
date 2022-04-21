@@ -4,6 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/menu_bg_gradient"
     tools:context=".MainMenu">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/drop_shadow"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="15dp"
+        tools:layout_editor_absoluteX="16dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/chopsic"
+            android:gravity="center"
+            android:text="NmapRoid"
+            android:textColor="@color/blue_500"
+            android:textSize="35sp" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
