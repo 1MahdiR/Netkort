@@ -1,4 +1,4 @@
-package com.mr.nmaproid;
+package com.mr.netkort;
 
 import androidx.appcompat.app.AppCompatActivity;
 
