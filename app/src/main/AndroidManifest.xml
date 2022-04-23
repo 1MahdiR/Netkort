@@ -10,11 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Netkort">
         <activity
-            android:name="com.mr.netkort.MainMenu"
+            android:name=".PingSingleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainMenu"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name="com.mr.netkort.SplashActivity"
+            android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
