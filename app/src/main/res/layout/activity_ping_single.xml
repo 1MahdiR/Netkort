@@ -27,7 +27,7 @@
     </LinearLayout>
 
     <ScrollView
-        android:id="@+id/console_text"
+        android:id="@+id/console"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="8"
@@ -39,10 +39,13 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/console_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="" />
         </LinearLayout>
     </ScrollView>
 
@@ -56,6 +59,10 @@
             android:id="@+id/host_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:inputType="text"
             android:hint="Host IP or address"
             android:minHeight="48dp"
             android:textColor="@color/white"
@@ -86,14 +93,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:max="100"
-                android:progress="0" />
+                android:progress="3" />
 
             <TextView
                 android:id="@+id/packet_count_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:text="1 packet"
+                android:text="4 packets"
                 android:textColor="@color/gray_500"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -121,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:max="99"
+                android:max="9"
                 android:progress="0" />
 
             <TextView
@@ -129,7 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:text="100 millisecond"
+                android:text="1 second"
                 android:textColor="@color/gray_500"
                 android:textSize="18sp" />
 
@@ -143,13 +150,13 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_ping"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ping" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_stop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
