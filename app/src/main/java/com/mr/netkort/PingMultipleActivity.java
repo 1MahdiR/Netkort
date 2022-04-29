@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -23,8 +24,36 @@ public class PingMultipleActivity extends AppCompatActivity {
     SeekBar packet_timeout_seek_bar;
     TextView packet_timeout_text;
 
+    Button start_ping_btn;
+    Button stop_ping_btn;
+
     public ArrayList<EditText> hosts;
     int hosts_len = 0;
+
+    public void enableUI() {
+        stop_ping_btn.setEnabled(false);
+        start_ping_btn.setEnabled(true);
+        packet_timeout_seek_bar.setEnabled(true);
+        push_input.setEnabled(true);
+        if (hosts_len > 0) { pop_input.setEnabled(true); }
+
+        for (EditText et:hosts) {
+            et.setEnabled(true);
+        }
+    }
+
+    public void disableUI() {
+        stop_ping_btn.setEnabled(true);
+        start_ping_btn.setEnabled(false);
+        packet_timeout_seek_bar.setEnabled(false);
+        push_input.setEnabled(false);
+        pop_input.setEnabled(false);
+
+        for (EditText et:hosts) {
+            et.setEnabled(false);
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +62,19 @@ public class PingMultipleActivity extends AppCompatActivity {
 
         hosts = new ArrayList<>();
 
+        MultiplePing ping = new MultiplePing();
+        Thread ping_thread = new Thread(ping);
+
+        TextView console = findViewById(R.id.console_text);
+
         hosts_layer = findViewById(R.id.hosts);
         push_input = findViewById(R.id.push_input);
         pop_input = findViewById(R.id.pop_input);
         packet_timeout_seek_bar = findViewById(R.id.packet_timeout_seek_bar);
         packet_timeout_text = findViewById(R.id.packet_timeout_text);
+
+        start_ping_btn = findViewById(R.id.button_ping);
+        stop_ping_btn = findViewById(R.id.button_stop);
 
         push_input.setOnClickListener((view) -> {
             EditText et = new EditText(this);
@@ -85,6 +122,40 @@ public class PingMultipleActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
+        });
+
+        start_ping_btn.setOnClickListener(view -> {
+
+            ArrayList<String> host_addresses = new ArrayList<>();
+            for (TextView et:hosts) {
+                String temp = et.getText().toString().trim();
+                if (!temp.isEmpty()) {
+                    host_addresses.add(temp);
+                } else {
+                    Toast.makeText(this, "Fill all 'host address' fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
+            try {
+
+                ping.setParams(this, console, host_addresses, packet_timeout_seek_bar.getProgress()+1);
+
+                disableUI();
+
+                if (!ping_thread.isAlive()) {
+                    ping_thread.start();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        stop_ping_btn.setOnClickListener(view -> {
+            ping.interrupt();
+            ping_thread.interrupt();
+            enableUI();
         });
     }
 }
