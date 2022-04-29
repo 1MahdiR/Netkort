@@ -32,7 +32,7 @@ public class Ping extends Thread {
                 this.context.runOnUiThread(() -> {
                     output_ui.setText(String.format("Pinging %s [%s]\n", this.host_address, this.host_ip));
                 });
-                for (int i = 0; i < this.packet_count; i++) {
+                for (int i = 0; i < this.packet_count;) {
                     boolean ping_result = Utility.ping(this.host_ip, this.timeout);
                     this.context.runOnUiThread(() -> {
                         if (ping_result) {
@@ -44,6 +44,10 @@ public class Ping extends Thread {
                     if (ping_result) { packets_received++; }
                     packets_transmitted++;
                     sleep(1000);
+
+                    if (packet_count < 101) { // Means it's not continuous
+                        i++;
+                    }
                 }
             } else {
                 this.context.runOnUiThread(() -> {
