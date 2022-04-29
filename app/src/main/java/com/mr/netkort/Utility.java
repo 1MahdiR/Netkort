@@ -2,7 +2,6 @@ package com.mr.netkort;
 
 import android.annotation.SuppressLint;
 import android.os.StrictMode;
-import android.util.Pair;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -35,9 +34,34 @@ public class Utility {
         }
     }
 
-    public static Pair<Boolean, String> ping(String host_ip, String host_address, int timeout, boolean verbose) {
+    public static Boolean ping(String host_ip, int timeout, int ttl) {
 
-        Pair<Boolean, String> pair;
+        try {
+            @SuppressLint("DefaultLocale")
+            Process p = Runtime.getRuntime().exec(String.format("/system/bin/ping -c 1 -t %d -W %d %s", ttl, timeout, host_ip));
+
+            // For reading ping's output
+            /*
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+            */
+
+            int result = p.waitFor();
+
+            return result == 0;
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            System.out.println(" Exception:" + e);
+        }
+
+        return false;
+    }
+
+    public static Boolean ping(String host_ip, int timeout) {
 
         try {
             @SuppressLint("DefaultLocale")
@@ -54,32 +78,13 @@ public class Utility {
 
             int result = p.waitFor();
 
-            if (result == 0) {
-                if (verbose) {
-                    pair = new Pair<>(true, String.format("ICMP packet received from host %s (%s)", host_address, host_ip));
-                } else {
-                    pair = new Pair<>(true, String.format("ICMP packet received from (%s)", host_ip));
-                }
-            } else {
-                if (verbose) {
-                    pair = new Pair<>(false, String.format("ICMP packet failed from %s", host_address));
-                } else {
-                    pair = new Pair<>(false, "ICMP packet failed");
-                }
-            }
-
-            return pair;
+            return result == 0;
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
             System.out.println(" Exception:" + e);
         }
 
-        if (verbose) {
-            pair = new Pair<>(false, String.format("ICMP packet failed from %s", host_address));
-        } else {
-            pair = new Pair<>(false, "ICMP packet failed");
-        }
-        return pair;
+        return false;
     }
 }

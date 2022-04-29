@@ -2,14 +2,10 @@ package com.mr.netkort;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.util.Pair;
 import android.widget.TextView;
-
-import java.util.HashMap;
 
 public class Ping extends Thread {
 
-    private volatile Pair<Boolean, String> pair;
     private Activity context;
     private TextView output_ui;
     private String host_address;
@@ -17,13 +13,13 @@ public class Ping extends Thread {
     private int timeout;
     private int packet_count;
 
-    public void setParams(Activity context, TextView output_ui, HashMap<String, String> args) {
+    public void setParams(Activity context, TextView output_ui, String host_address, int packet_count, int timeout) {
         this.context = context;
         this.output_ui = output_ui;
-        this.host_address = args.get("host_address");
+        this.host_address = host_address;
         this.host_ip = Utility.getHostIp(this.host_address);
-        this.timeout = Integer.parseInt(args.getOrDefault("timeout", "1"));
-        this.packet_count = Integer.parseInt(args.getOrDefault("count", "1"));
+        this.timeout = timeout;
+        this.packet_count = packet_count;
     }
 
     @SuppressLint("DefaultLocale")
@@ -37,11 +33,15 @@ public class Ping extends Thread {
                     output_ui.setText(String.format("Pinging %s [%s]\n", this.host_address, this.host_ip));
                 });
                 for (int i = 0; i < this.packet_count; i++) {
-                    this.pair = Utility.ping(this.host_ip, this.host_address, this.timeout, false);
+                    boolean ping_result = Utility.ping(this.host_ip, this.timeout);
                     this.context.runOnUiThread(() -> {
-                        output_ui.append(this.pair.second + "\n");
+                        if (ping_result) {
+                            output_ui.append(String.format("ICMP packet received from (%s)", this.host_ip) + "\n");
+                        } else {
+                            output_ui.append("ICMP packet failed" + "\n");
+                        }
                     });
-                    if (this.pair.first) { packets_received++; }
+                    if (ping_result) { packets_received++; }
                     packets_transmitted++;
                     sleep(1000);
                 }

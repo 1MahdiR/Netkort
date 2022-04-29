@@ -1,7 +1,6 @@
 package com.mr.netkort;
 
 import android.app.Activity;
-import android.util.Pair;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -39,15 +38,19 @@ public class MultiplePing extends Thread {
                 String host = this.host_address.get(i);
                 if (this.host_ip.get(i) != null) {
 
-                    Pair<Boolean, String> pair = Utility.ping(ip, host, this.timeout, true);
+                    boolean ping_result = Utility.ping(ip, this.timeout);
                     this.context.runOnUiThread(() -> {
-                        output_ui.append(pair.second + "\n");
+                        if (ping_result) {
+                            output_ui.append(String.format("ICMP packet received from %s (%s)", host, ip) + "\n");
+                        } else {
+                            output_ui.append(String.format("ICMP packet failed from %s (%s)", host, ip) + "\n");
+                        }
                     });
                     sleep(1000);
 
                 } else {
                     this.context.runOnUiThread(() -> {
-                        output_ui.setText(String.format("Could not find host %s.", host) + "\n");
+                        output_ui.append(String.format("Could not find host %s.", host) + "\n");
                     });
                 }
             }

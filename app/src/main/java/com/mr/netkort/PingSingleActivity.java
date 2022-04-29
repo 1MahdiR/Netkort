@@ -9,8 +9,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.HashMap;
-
 public class PingSingleActivity extends AppCompatActivity {
 
     TextView console;
@@ -112,12 +110,10 @@ public class PingSingleActivity extends AppCompatActivity {
             }
 
             try {
-                HashMap<String, String> ping_args = new HashMap<>();
-                ping_args.put("host_address", host_address_str);
-                ping_args.put("timeout", Integer.toString(packet_timeout_seek_bar.getProgress()+1));
-                ping_args.put("count", Integer.toString(packet_count_seek_bar.getProgress()+1));
+                int packet_timeout = packet_timeout_seek_bar.getProgress() + 1;
+                int packet_count = packet_count_seek_bar.getProgress() + 1;
 
-                ping.setParams(this, console, ping_args);
+                ping.setParams(this, console, host_address_str, packet_count, packet_timeout);
 
                 disableUI();
 
