@@ -2,6 +2,11 @@ package com.mr.netkort;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.graphics.Color;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
 public class Ping extends Thread {
@@ -38,7 +43,10 @@ public class Ping extends Thread {
                         if (ping_result) {
                             output_ui.append(String.format("ICMP packet received from (%s)", this.host_ip) + "\n");
                         } else {
-                            output_ui.append("ICMP packet failed" + "\n");
+                            SpannableString spannableString = new SpannableString("ICMP packet failed" + "\n");
+                            ForegroundColorSpan red = new ForegroundColorSpan(Color.RED);
+                            spannableString.setSpan(red, 12, 18, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            output_ui.append(spannableString);
                         }
                     });
                     if (ping_result) { packets_received++; }
