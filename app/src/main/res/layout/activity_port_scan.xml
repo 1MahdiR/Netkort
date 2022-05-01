@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:max="9"
-                android:progress="0" />
+                android:progress="1" />
 
             <TextView
                 android:id="@+id/packet_timeout_text"
@@ -174,7 +174,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button_ping"
+                android:id="@+id/button_port_scan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Port scan" />
