@@ -124,8 +124,8 @@
                         android:layout_width="101dp"
                         android:layout_height="137dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/icon_ping_multiple"
-                        android:contentDescription="icon_ping_single" />
+                        app:srcCompat="@drawable/netkort_icon_port_scan"
+                        android:contentDescription="icon_port_scan" />
 
                     <TextView
                         android:id="@+id/textView8"
