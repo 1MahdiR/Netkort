@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -43,6 +44,8 @@ public class PingSingleActivity extends AppCompatActivity {
 
         Ping ping = new Ping();
         Thread ping_thread = new Thread(ping);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 
         console = findViewById(R.id.console_text);

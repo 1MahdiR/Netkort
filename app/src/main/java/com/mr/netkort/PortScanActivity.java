@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -47,6 +48,8 @@ public class PortScanActivity extends AppCompatActivity {
 
         PortScan portScan = new PortScan();
         Thread portScan_thread = new Thread(portScan);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         console = findViewById(R.id.console_text);
         host_address = findViewById(R.id.host_address);
