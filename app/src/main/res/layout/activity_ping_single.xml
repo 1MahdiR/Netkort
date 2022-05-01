@@ -30,7 +30,7 @@
         android:id="@+id/console"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="8"
+        android:layout_weight="9"
         android:background="@drawable/console_bg" >
 
         <LinearLayout
@@ -49,34 +49,31 @@
         </LinearLayout>
     </ScrollView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="8"
-        android:background="@drawable/console_tool_bg">
+        android:background="@drawable/console_tool_bg"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/host_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
-            android:inputType="text"
+            android:layout_marginEnd="10dp"
             android:hint="Host IP or address"
+            android:inputType="text"
             android:minHeight="48dp"
             android:textColor="@color/white"
-            android:textColorHint="@color/gray_500"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="10dp" />
+            android:textColorHint="@color/gray_500" />
 
         <LinearLayout
             android:id="@+id/packet_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/packet_timeout"
-            app:layout_constraintTop_toBottomOf="@+id/host_address">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -109,10 +106,8 @@
             android:id="@+id/packet_timeout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/packet_count"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -146,8 +141,7 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/button_ping"
@@ -162,6 +156,6 @@
                 android:enabled="false"
                 android:text="Stop" />
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </LinearLayout>
