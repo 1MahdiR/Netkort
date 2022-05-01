@@ -15,6 +15,7 @@ public class MainMenu extends AppCompatActivity {
 
         LinearLayout ping_single_btn = findViewById(R.id.ping_single_btn);
         LinearLayout ping_multiple_btn = findViewById(R.id.ping_multiple_btn);
+        LinearLayout port_scan_btn = findViewById(R.id.port_scan_btn);
 
         ping_single_btn.setOnClickListener((view) -> {
             Intent intent = new Intent(this, PingSingleActivity.class);
@@ -23,6 +24,11 @@ public class MainMenu extends AppCompatActivity {
 
         ping_multiple_btn.setOnClickListener((view) -> {
             Intent intent = new Intent(this, PingMultipleActivity.class);
+            startActivity(intent);
+        });
+
+        port_scan_btn.setOnClickListener((view) -> {
+            Intent intent = new Intent(this, PortScanActivity.class);
             startActivity(intent);
         });
     }
