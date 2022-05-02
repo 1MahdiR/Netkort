@@ -3,7 +3,6 @@ package com.mr.netkort;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -18,6 +17,8 @@ public class Ping extends Thread {
     private int timeout;
     private int packet_count;
 
+    private volatile boolean isRunning = true;
+
     public void setParams(Activity context, TextView output_ui, String host_address, int packet_count, int timeout) {
         this.context = context;
         this.output_ui = output_ui;
@@ -25,6 +26,14 @@ public class Ping extends Thread {
         this.host_ip = Utility.getHostIp(this.host_address);
         this.timeout = timeout;
         this.packet_count = packet_count;
+    }
+
+    public void kill() {
+        this.isRunning = false;
+    }
+
+    public void reset() {
+        this.isRunning = true;
     }
 
     @SuppressLint("DefaultLocale")
@@ -38,24 +47,31 @@ public class Ping extends Thread {
                     output_ui.setText(String.format("Pinging %s [%s]\n", this.host_address, this.host_ip));
                 });
                 for (int i = 0; i < this.packet_count;) {
-                    boolean ping_result = Utility.ping(this.host_ip, this.timeout);
-                    this.context.runOnUiThread(() -> {
-                        if (ping_result) {
-                            output_ui.append(String.format("ICMP packet received from (%s)", this.host_ip) + "\n");
-                        } else {
-                            SpannableString spannableString = new SpannableString("ICMP packet failed" + "\n");
-                            ForegroundColorSpan red = new ForegroundColorSpan(Color.RED);
-                            spannableString.setSpan(red, 12, 18, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                            output_ui.append(spannableString);
-                        }
-                    });
-                    if (ping_result) { packets_received++; }
-                    packets_transmitted++;
-                    sleep(1000);
 
-                    if (packet_count < 101) { // Means it's not continuous
-                        i++;
+                    if (isRunning) {
+                        boolean ping_result = Utility.ping(this.host_ip, this.timeout);
+                        this.context.runOnUiThread(() -> {
+                            if (ping_result) {
+                                output_ui.append(String.format("ICMP packet received from (%s)", this.host_ip) + "\n");
+                            } else {
+                                SpannableString spannableString = new SpannableString("ICMP packet failed" + "\n");
+                                ForegroundColorSpan red = new ForegroundColorSpan(Color.RED);
+                                spannableString.setSpan(red, 12, 18, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                output_ui.append(spannableString);
+                            }
+                        });
+                        if (ping_result) { packets_received++; }
+                        packets_transmitted++;
+                        sleep(1000);
+
+                        if (packet_count < 101) { // Means it's not continuous
+                            i++;
+                        }
+                    } else {
+
+                        throw new InterruptedException();
                     }
+
                 }
             } else {
                 this.context.runOnUiThread(() -> {

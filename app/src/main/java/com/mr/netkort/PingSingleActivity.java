@@ -43,7 +43,6 @@ public class PingSingleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ping_single);
 
         Ping ping = new Ping();
-        Thread ping_thread = new Thread(ping);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
@@ -106,6 +105,8 @@ public class PingSingleActivity extends AppCompatActivity {
 
         start_ping_btn.setOnClickListener(view -> {
 
+            Thread ping_thread = new Thread(ping);
+
             String host_address_str = host_address.getText().toString().trim();
             if (host_address_str.isEmpty()) {
                 Toast.makeText(this, "host address can not be empty.", Toast.LENGTH_SHORT).show();
@@ -121,6 +122,7 @@ public class PingSingleActivity extends AppCompatActivity {
                 disableUI();
 
                 if (!ping_thread.isAlive()) {
+                    ping.reset();
                     ping_thread.start();
                 }
 
@@ -130,8 +132,7 @@ public class PingSingleActivity extends AppCompatActivity {
         });
 
         stop_ping_btn.setOnClickListener(view -> {
-            ping.interrupt();
-            ping_thread.interrupt();
+            ping.kill();
             enableUI();
         });
     }
