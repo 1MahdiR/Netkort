@@ -71,7 +71,7 @@
                         android:gravity="center"
                         android:layout_gravity="center"
                         android:layout_marginStart="20dp"
-                        android:text="Ping single host"
+                        android:text="Ping a single host"
                         android:fontFamily="@font/worksans"
                         android:textSize="25sp" />
                 </LinearLayout>
@@ -136,6 +136,38 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="20dp"
                         android:text="Port scan a host"
+                        android:fontFamily="@font/worksans"
+                        android:textSize="25sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/traceroute_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:background="@drawable/icon_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="101dp"
+                        android:layout_height="137dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/netkort_icon_port_scan"
+                        android:contentDescription="icon_port_scan" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:text="Traceroute a host"
                         android:fontFamily="@font/worksans"
                         android:textSize="25sp" />
                 </LinearLayout>
