@@ -133,7 +133,7 @@ public class PingSingleActivity extends AppCompatActivity {
 
         stop_ping_btn.setOnClickListener(view -> {
             ping.kill();
-            enableUI();
+            stop_ping_btn.setEnabled(false);
         });
     }
 }

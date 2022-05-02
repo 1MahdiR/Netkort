@@ -96,6 +96,9 @@ public class Ping extends Thread {
                     output_ui.append("\n------- stopped!");
                 });
             }
+            this.context.runOnUiThread(() -> {
+                ((PingSingleActivity) context).enableUI();
+            });
         }
     }
 }
