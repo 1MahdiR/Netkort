@@ -85,19 +85,19 @@
                 android:textSize="20sp" />
 
             <SeekBar
-                android:id="@+id/packet_count_seek_bar"
+                android:id="@+id/packet_hop_seek_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:max="100"
-                android:progress="3" />
+                android:max="90"
+                android:progress="20" />
 
             <TextView
-                android:id="@+id/packet_count_text"
+                android:id="@+id/packet_hop_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:text="4 hops"
+                android:text="30 hops"
                 android:textColor="@color/gray_500"
                 android:textSize="18sp" />
         </LinearLayout>
