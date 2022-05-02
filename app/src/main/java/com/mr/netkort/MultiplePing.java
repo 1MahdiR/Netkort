@@ -17,12 +17,22 @@ public class MultiplePing extends Thread {
     private ArrayList<String> host_ip;
     private int timeout;
 
+    private volatile boolean isRunning = true;
+
     public void setParams(Activity context, TextView output_ui, ArrayList<String> host_address, int timeout) {
         this.context = context;
         this.output_ui = output_ui;
         this.host_address = host_address;
         this.host_ip = new ArrayList<>();
         this.timeout = timeout;
+    }
+
+    public void kill() {
+        isRunning = false;
+    }
+
+    public void reset() {
+        isRunning = true;
     }
 
     @Override
@@ -38,6 +48,11 @@ public class MultiplePing extends Thread {
                 output_ui.setText("");
             });
             for (int i = 0; i < this.host_ip.size(); i++) {
+
+                if (!isRunning) {
+                    throw new InterruptedException();
+                }
+
                 String ip = this.host_ip.get(i);
                 String host = this.host_address.get(i);
                 if (this.host_ip.get(i) != null) {
@@ -68,6 +83,7 @@ public class MultiplePing extends Thread {
         } finally {
             this.context.runOnUiThread(() -> {
                 output_ui.append("\n-------");
+                ((PingMultipleActivity) context).enableUI();
             });
         }
     }

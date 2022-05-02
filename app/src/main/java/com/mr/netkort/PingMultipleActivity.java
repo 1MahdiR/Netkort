@@ -63,7 +63,6 @@ public class PingMultipleActivity extends AppCompatActivity {
         hosts = new ArrayList<>();
 
         MultiplePing ping = new MultiplePing();
-        Thread ping_thread = new Thread(ping);
 
         TextView console = findViewById(R.id.console_text);
 
@@ -126,6 +125,8 @@ public class PingMultipleActivity extends AppCompatActivity {
 
         start_ping_btn.setOnClickListener(view -> {
 
+            Thread ping_thread = new Thread(ping);
+
             ArrayList<String> host_addresses = new ArrayList<>();
             for (TextView et:hosts) {
                 String temp = et.getText().toString().trim();
@@ -136,7 +137,6 @@ public class PingMultipleActivity extends AppCompatActivity {
                     return;
                 }
             }
-
             try {
 
                 ping.setParams(this, console, host_addresses, packet_timeout_seek_bar.getProgress()+1);
@@ -144,6 +144,7 @@ public class PingMultipleActivity extends AppCompatActivity {
                 disableUI();
 
                 if (!ping_thread.isAlive()) {
+                    ping.reset();
                     ping_thread.start();
                 }
 
@@ -153,9 +154,8 @@ public class PingMultipleActivity extends AppCompatActivity {
         });
 
         stop_ping_btn.setOnClickListener(view -> {
-            ping.interrupt();
-            ping_thread.interrupt();
-            enableUI();
+            ping.kill();
+            stop_ping_btn.setEnabled(false);
         });
     }
 }
