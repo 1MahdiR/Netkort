@@ -23,6 +23,7 @@ public class PortScan extends Thread {
     private int timeout;
     private int port_start;
     private int port_end;
+    private volatile boolean isRunning;
 
     public void setParams(Activity context, TextView output_ui, String host_address, int timeout,
                           int port_start, int port_end) {
@@ -33,6 +34,14 @@ public class PortScan extends Thread {
         this.timeout = timeout;
         this.port_start = port_start;
         this.port_end = port_end;
+    }
+
+    public void kill() {
+        this.isRunning = false;
+    }
+
+    public void reset() {
+        this.isRunning = true;
     }
 
     @SuppressLint("DefaultLocale")
@@ -46,6 +55,11 @@ public class PortScan extends Thread {
                             this.port_start, this.port_end, this.host_address, this.host_ip));
                 });
                 for (int port = this.port_start; port <= port_end; port++) {
+
+                    if (!isRunning) {
+                        throw new InterruptedException();
+                    }
+
                     boolean isPortOpen = false;
                     InetAddress inetAddress = InetAddress.getByName(host_ip);
                     Socket socket = null;
@@ -82,10 +96,6 @@ public class PortScan extends Thread {
                             output_ui.append(spannableString);
                         }
                     });
-
-                    if (interrupted()) {
-                        throw new InterruptedException();
-                    }
                 }
             } else {
                 this.context.runOnUiThread(() -> {

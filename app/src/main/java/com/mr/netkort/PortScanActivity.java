@@ -47,7 +47,6 @@ public class PortScanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_port_scan);
 
         PortScan portScan = new PortScan();
-        Thread portScan_thread = new Thread(portScan);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
@@ -85,6 +84,8 @@ public class PortScanActivity extends AppCompatActivity {
 
         start_port_scan.setOnClickListener(view -> {
 
+            Thread portScan_thread = new Thread(portScan);
+
             int start = Integer.parseInt(port_start.getText().toString());
             int end = Integer.parseInt(port_end.getText().toString());
 
@@ -115,6 +116,7 @@ public class PortScanActivity extends AppCompatActivity {
                 disableUI();
 
                 if (!portScan_thread.isAlive()) {
+                    portScan.reset();
                     portScan_thread.start();
                 }
 
@@ -124,8 +126,7 @@ public class PortScanActivity extends AppCompatActivity {
         });
 
         stop_port_scan.setOnClickListener(view -> {
-            portScan.interrupt();
-            portScan_thread.interrupt();
+            portScan.kill();
             stop_port_scan.setEnabled(false);
         });
     }
