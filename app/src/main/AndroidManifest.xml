@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Netkort">
         <activity
+            android:name=".TracerouteActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
             android:name=".PortScanActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />/>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".PingMultipleActivity"
             android:exported="false"
