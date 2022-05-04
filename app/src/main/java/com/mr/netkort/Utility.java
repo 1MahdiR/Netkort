@@ -21,19 +21,8 @@ public class Utility {
         StrictMode.setThreadPolicy(policy);
 
         try {
-            InetAddress inetAddr = InetAddress.getByName(host_address);
 
-            byte[] addr = inetAddr.getAddress();
-
-            String ipAddr = "";
-            for (int i = 0; i < addr.length; i++) {
-                if (i > 0) {
-                    ipAddr += ".";
-                }
-                ipAddr += addr[i] & 0xFF;
-            }
-
-            return ipAddr;
+            return InetAddress.getByName(host_address).getHostAddress();
 
         } catch (UnknownHostException e) {
             return null;
