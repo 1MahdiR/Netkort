@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TracerouteActivity extends AppCompatActivity {
 
@@ -41,6 +42,8 @@ public class TracerouteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_traceroute);
 
+        Traceroute traceroute = new Traceroute();
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         console = findViewById(R.id.console_text);
@@ -56,7 +59,7 @@ public class TracerouteActivity extends AppCompatActivity {
             @SuppressLint("DefaultLocale")
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                packet_hop_text.setText(String.format("%d packets", i+10));
+                packet_hop_text.setText(String.format("%d packets", i+1));
             }
 
             @Override
@@ -87,6 +90,39 @@ public class TracerouteActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
+        });
+
+        start_traceroute_btn.setOnClickListener(view -> {
+
+            Thread traceroute_thread = new Thread(traceroute);
+
+            String host_address_str = host_address.getText().toString().trim();
+            if (host_address_str.isEmpty()) {
+                Toast.makeText(this, "host address can not be empty.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                int packet_hops = packet_hop_seek_bar.getProgress() + 1;
+                int packet_timeout = packet_timeout_seek_bar.getProgress() + 1;
+
+                traceroute.setParams(this, console, host_address_str, packet_hops, packet_timeout);
+
+                disableUI();
+
+                if (!traceroute_thread.isAlive()) {
+                    traceroute.reset();
+                    traceroute_thread.start();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        stop_traceroute_btn.setOnClickListener(view -> {
+            traceroute.kill();
+            stop_traceroute_btn.setEnabled(false);
         });
     }
 }
