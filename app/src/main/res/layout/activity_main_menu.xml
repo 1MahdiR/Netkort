@@ -93,7 +93,7 @@
                         android:layout_height="137dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/icon_ping_multiple"
-                        android:contentDescription="icon_ping_single" />
+                        android:contentDescription="icon_ping_multiple" />
 
                     <TextView
                         android:id="@+id/textView6"
@@ -156,8 +156,8 @@
                         android:layout_width="101dp"
                         android:layout_height="137dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/netkort_icon_port_scan"
-                        android:contentDescription="icon_port_scan" />
+                        app:srcCompat="@drawable/netkort_icon_traceroute"
+                        android:contentDescription="icon_traceroute" />
 
                     <TextView
                         android:id="@+id/textView9"
