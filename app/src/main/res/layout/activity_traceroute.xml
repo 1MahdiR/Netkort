@@ -89,8 +89,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:max="90"
-                android:progress="20" />
+                android:max="99"
+                android:progress="29" />
 
             <TextView
                 android:id="@+id/packet_hop_text"
@@ -147,7 +147,7 @@
                 android:id="@+id/button_traceroute"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ping" />
+                android:text="Traceroute" />
 
             <Button
                 android:id="@+id/button_stop"
