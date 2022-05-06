@@ -53,7 +53,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="30dp">
 
                     <ImageView
                         android:id="@+id/imageView5"
@@ -85,7 +85,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="30dp">
 
                     <ImageView
                         android:id="@+id/imageView6"
@@ -117,7 +117,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="30dp">
 
                     <ImageView
                         android:id="@+id/imageView7"
@@ -149,7 +149,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="30dp">
 
                     <ImageView
                         android:id="@+id/imageView8"
