@@ -17,6 +17,7 @@ public class MainMenu extends AppCompatActivity {
         LinearLayout ping_multiple_btn = findViewById(R.id.ping_multiple_btn);
         LinearLayout port_scan_btn = findViewById(R.id.port_scan_btn);
         LinearLayout traceroute_btn = findViewById(R.id.traceroute_btn);
+        LinearLayout sweep_network_btn = findViewById(R.id.sweep_network_btn);
 
         ping_single_btn.setOnClickListener((view) -> {
             Intent intent = new Intent(this, PingSingleActivity.class);
@@ -35,6 +36,11 @@ public class MainMenu extends AppCompatActivity {
 
         traceroute_btn.setOnClickListener((view) -> {
             Intent intent = new Intent(this, TracerouteActivity.class);
+            startActivity(intent);
+        });
+
+        sweep_network_btn.setOnClickListener((view) -> {
+            Intent intent = new Intent(this, SweepNetworkActivity.class);
             startActivity(intent);
         });
     }
