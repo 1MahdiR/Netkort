@@ -30,7 +30,6 @@ public class PortScan extends Thread {
         this.context = context;
         this.output_ui = output_ui;
         this.host_address = host_address;
-        this.host_ip = Utility.getHostIp(this.host_address);
         this.timeout = timeout;
         this.port_start = port_start;
         this.port_end = port_end;
@@ -49,6 +48,8 @@ public class PortScan extends Thread {
     public void run() {
 
         try {
+            this.host_ip = Utility.getHostIp(this.host_address);
+
             if (this.host_ip != null) {
                 this.context.runOnUiThread(() -> {
                     output_ui.setText(String.format("Checking ports %d to %d on %s [%s]\n",

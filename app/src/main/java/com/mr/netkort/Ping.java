@@ -23,7 +23,6 @@ public class Ping extends Thread {
         this.context = context;
         this.output_ui = output_ui;
         this.host_address = host_address;
-        this.host_ip = Utility.getHostIp(this.host_address);
         this.timeout = timeout;
         this.packet_count = packet_count;
     }
@@ -42,6 +41,8 @@ public class Ping extends Thread {
         int packets_received = 0;
         int packets_transmitted = 0;
         try {
+            this.host_ip = Utility.getHostIp(this.host_address);
+
             if (this.host_ip != null) {
                 this.context.runOnUiThread(() -> {
                     output_ui.setText(String.format("Pinging %s [%s]\n", this.host_address, this.host_ip));

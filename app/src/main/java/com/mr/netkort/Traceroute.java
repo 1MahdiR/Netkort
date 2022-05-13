@@ -24,7 +24,6 @@ public class Traceroute extends Thread {
         this.context = context;
         this.output_ui = output_ui;
         this.host_address = host_address;
-        this.host_ip = Utility.getHostIp(this.host_address);
         this.timeout = timeout;
         this.packet_hop = packet_hop;
     }
@@ -41,6 +40,8 @@ public class Traceroute extends Thread {
     @Override
     public void run() {
         try {
+            this.host_ip = Utility.getHostIp(this.host_address);
+
             if (this.host_ip != null) {
                 this.context.runOnUiThread(() -> {
                     output_ui.setText(String.format("Traceroute to %s [%s]\n", this.host_address, this.host_ip));
