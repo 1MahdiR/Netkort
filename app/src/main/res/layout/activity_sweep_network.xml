@@ -202,7 +202,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button_ping"
+                android:id="@+id/button_network_sweep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Network sweep" />
