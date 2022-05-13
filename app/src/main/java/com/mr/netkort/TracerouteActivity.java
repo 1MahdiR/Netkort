@@ -59,7 +59,7 @@ public class TracerouteActivity extends AppCompatActivity {
             @SuppressLint("DefaultLocale")
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                packet_hop_text.setText(String.format("%d packets", i+1));
+                packet_hop_text.setText(String.format("%d hops", i+1));
             }
 
             @Override
