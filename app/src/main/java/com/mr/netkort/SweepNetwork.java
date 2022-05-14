@@ -8,6 +8,8 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 import io.apptik.widget.MultiSlider;
 
 public class SweepNetwork extends Thread {
@@ -18,6 +20,7 @@ public class SweepNetwork extends Thread {
     private MultiSlider ip_range_2_seekbar;
     private MultiSlider ip_range_3_seekbar;
     private MultiSlider ip_range_4_seekbar;
+    private Calendar calendar;
 
     private volatile boolean isRunning = true;
 
@@ -43,6 +46,7 @@ public class SweepNetwork extends Thread {
     @SuppressLint("DefaultLocale")
     @Override
     public void run() {
+        this.calendar = Calendar.getInstance();
 
         int ip_1_value_1, ip_1_value_2;
         int ip_2_value_1, ip_2_value_2;
@@ -85,7 +89,8 @@ public class SweepNetwork extends Thread {
                 } else {
                     output_ui.append(String.format("%d-%d", ip_4_value_1, ip_4_value_2));
                 }
-                output_ui.append(" range:\n");
+                output_ui.append(" range\n");
+                output_ui.append(Utility.getDateTime(this.calendar) + "\n\n");
             });
 
             for (int i = ip_1_value_1; i <= ip_1_value_2; i++) {
