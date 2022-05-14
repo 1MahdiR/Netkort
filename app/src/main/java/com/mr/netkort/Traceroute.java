@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.util.Pair;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 public class Traceroute extends Thread {
 
     public enum Stat {
@@ -17,6 +19,7 @@ public class Traceroute extends Thread {
     private String host_ip;
     private int timeout;
     private int packet_hop;
+    private Calendar calendar;
 
     private volatile boolean isRunning = true;
 
@@ -39,12 +42,15 @@ public class Traceroute extends Thread {
     @SuppressLint("DefaultLocale")
     @Override
     public void run() {
+        this.calendar = Calendar.getInstance();
+
         try {
             this.host_ip = Utility.getHostIp(this.host_address);
 
             if (this.host_ip != null) {
                 this.context.runOnUiThread(() -> {
                     output_ui.setText(String.format("Traceroute to %s [%s]\n", this.host_address, this.host_ip));
+                    output_ui.append(Utility.getDateTime(this.calendar) + "\n\n");
                 });
 
                 for (int i = 1; i <= this.packet_hop; i++) {
