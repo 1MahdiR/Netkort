@@ -12,6 +12,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.Calendar;
 
 
 public class PortScan extends Thread {
@@ -23,6 +24,8 @@ public class PortScan extends Thread {
     private int timeout;
     private int port_start;
     private int port_end;
+    private Calendar calendar;
+
     private volatile boolean isRunning;
 
     public void setParams(Activity context, TextView output_ui, String host_address, int timeout,
@@ -47,6 +50,8 @@ public class PortScan extends Thread {
     @Override
     public void run() {
 
+        this.calendar = Calendar.getInstance();
+
         try {
             this.host_ip = Utility.getHostIp(this.host_address);
 
@@ -54,6 +59,7 @@ public class PortScan extends Thread {
                 this.context.runOnUiThread(() -> {
                     output_ui.setText(String.format("Checking ports %d to %d on %s [%s]\n",
                             this.port_start, this.port_end, this.host_address, this.host_ip));
+                    output_ui.append(Utility.getDateTime(this.calendar) + "\n\n");
                 });
                 for (int port = this.port_start; port <= port_end; port++) {
 
