@@ -8,6 +8,8 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 public class Ping extends Thread {
 
     private Activity context;
@@ -16,6 +18,7 @@ public class Ping extends Thread {
     private String host_ip;
     private int timeout;
     private int packet_count;
+    private Calendar calendar;
 
     private volatile boolean isRunning = true;
 
@@ -38,6 +41,7 @@ public class Ping extends Thread {
     @SuppressLint("DefaultLocale")
     @Override
     public void run() {
+        this.calendar = Calendar.getInstance();
         int packets_received = 0;
         int packets_transmitted = 0;
         try {
@@ -46,6 +50,7 @@ public class Ping extends Thread {
             if (this.host_ip != null) {
                 this.context.runOnUiThread(() -> {
                     output_ui.setText(String.format("Pinging %s [%s]\n", this.host_address, this.host_ip));
+                    output_ui.append(Utility.getDateTime(this.calendar) + "\n\n");
                 });
                 for (int i = 0; i < this.packet_count;) {
 

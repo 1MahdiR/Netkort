@@ -1,5 +1,6 @@
 package com.mr.netkort;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
 import android.text.SpannableString;
@@ -8,6 +9,7 @@ import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MultiplePing extends Thread {
 
@@ -16,6 +18,7 @@ public class MultiplePing extends Thread {
     private ArrayList<String> host_address;
     private ArrayList<String> host_ip;
     private int timeout;
+    private Calendar calendar;
 
     private volatile boolean isRunning = true;
 
@@ -35,8 +38,10 @@ public class MultiplePing extends Thread {
         isRunning = true;
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void run() {
+        this.calendar = Calendar.getInstance();
 
         for (String item:this.host_address) {
             String ip = Utility.getHostIp(item);
@@ -45,7 +50,12 @@ public class MultiplePing extends Thread {
 
         try {
             this.context.runOnUiThread(() -> {
-                output_ui.setText("");
+                if (this.host_address.size() > 1) {
+                    output_ui.setText(String.format("Pinging %d hosts\n", host_address.size()));
+                } else {
+                    output_ui.setText("Pinging 1 host\n");
+                }
+                output_ui.append(Utility.getDateTime(this.calendar) + "\n\n");
             });
             for (int i = 0; i < this.host_ip.size(); i++) {
 
