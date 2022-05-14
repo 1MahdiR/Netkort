@@ -126,27 +126,26 @@
                     android:textSize="18sp" />
 
             </LinearLayout>
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/button_ping"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ping" />
-
-                <Button
-                    android:id="@+id/button_stop"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:text="Stop" />
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button_ping"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ping" />
+
+        <Button
+            android:id="@+id/button_stop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Stop" />
+    </LinearLayout>
 
 </LinearLayout>
