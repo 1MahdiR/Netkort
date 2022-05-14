@@ -9,11 +9,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utility {
+
+    public static String getDateTime(Calendar calendar) {
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy  HH:mm:ss z");
+
+        return simpleDateFormat.format(calendar.getTime());
+    }
 
     public static String getHostIp(String host_address) {
 
