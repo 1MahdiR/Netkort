@@ -1,11 +1,17 @@
 package com.mr.netkort;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,12 +26,14 @@ public class PingSingleActivity extends AppCompatActivity {
     TextView packet_timeout_text;
     Button start_ping_btn;
     Button stop_ping_btn;
+    Button log_btn;
 
     public void enableUI() {
         stop_ping_btn.setEnabled(false);
         start_ping_btn.setEnabled(true);
         packet_count_seek_bar.setEnabled(true);
         packet_timeout_seek_bar.setEnabled(true);
+        log_btn.setEnabled(true);
         host_address.setEnabled(true);
     }
 
@@ -34,6 +42,7 @@ public class PingSingleActivity extends AppCompatActivity {
         start_ping_btn.setEnabled(false);
         packet_count_seek_bar.setEnabled(false);
         packet_timeout_seek_bar.setEnabled(false);
+        log_btn.setEnabled(false);
         host_address.setEnabled(false);
     }
 
@@ -55,6 +64,7 @@ public class PingSingleActivity extends AppCompatActivity {
         packet_timeout_text = findViewById(R.id.packet_timeout_text);
         start_ping_btn = findViewById(R.id.button_ping);
         stop_ping_btn = findViewById(R.id.button_stop);
+        log_btn = findViewById(R.id.button_log);
 
         packet_count_seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -134,6 +144,55 @@ public class PingSingleActivity extends AppCompatActivity {
         stop_ping_btn.setOnClickListener(view -> {
             ping.kill();
             stop_ping_btn.setEnabled(false);
+        });
+
+        log_btn.setOnClickListener(view -> {
+            String txt = console.getText().toString();
+            if (!txt.trim().isEmpty()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Save log");
+                final EditText input = new EditText(this);
+                final LinearLayout linearLayout = new LinearLayout(this);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                layoutParams.setMargins(60, 10, 60, 10);
+
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                input.setHint("Enter a name for log");
+                input.setLayoutParams(layoutParams);
+                input.setSingleLine();
+
+                linearLayout.addView(input);
+                builder.setView(linearLayout);
+
+                builder.setPositiveButton("OK", (dialogInterface, i) -> {
+                    SharedPreferences sharedPreferences = getSharedPreferences("logs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    String key = input.getText().toString().trim();
+                    if (sharedPreferences.contains(key)) {
+                        AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                        builder2.setTitle("Warning");
+                        builder2.setMessage("There is already a log with this name.\n" +
+                                "Do you want to overwrite it?");
+                        builder2.setPositiveButton("Yes", (dialogInterface2, i2) -> {
+                            editor.putString(key, txt);
+                            editor.apply();
+                        });
+                        builder2.setNegativeButton("Cancel", (dialogInterface2, i2) ->
+                                dialogInterface2.cancel());
+
+                        builder2.show();
+                    } else {
+                        editor.putString(key, txt);
+                        editor.apply();
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.cancel());
+
+                builder.show();
+            }
         });
     }
 }
