@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -161,6 +161,7 @@ public class PingSingleActivity extends AppCompatActivity {
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
                 input.setHint("Enter a name for log");
                 input.setLayoutParams(layoutParams);
+                input.setFilters(new InputFilter[] { new InputFilter.LengthFilter(22) });
                 input.setSingleLine();
 
                 linearLayout.addView(input);
@@ -178,6 +179,7 @@ public class PingSingleActivity extends AppCompatActivity {
                         builder2.setPositiveButton("Yes", (dialogInterface2, i2) -> {
                             editor.putString(key, txt);
                             editor.apply();
+                            Toast.makeText(this, "Log has been saved.", Toast.LENGTH_SHORT).show();
                         });
                         builder2.setNegativeButton("Cancel", (dialogInterface2, i2) ->
                                 dialogInterface2.cancel());
@@ -186,6 +188,7 @@ public class PingSingleActivity extends AppCompatActivity {
                     } else {
                         editor.putString(key, txt);
                         editor.apply();
+                        Toast.makeText(this, "Log has been saved.", Toast.LENGTH_SHORT).show();
                     }
                 });
 
