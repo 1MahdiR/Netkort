@@ -1,11 +1,18 @@
 package com.mr.netkort;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import io.apptik.widget.MultiSlider;
 
@@ -25,10 +32,12 @@ public class SweepNetworkActivity extends AppCompatActivity {
 
     Button start_network_sweep_btn;
     Button stop_network_sweep_btn;
+    Button log_btn;
 
     public void enableUI() {
         stop_network_sweep_btn.setEnabled(false);
         start_network_sweep_btn.setEnabled(true);
+        log_btn.setEnabled(true);
         ip_range_1_seekbar.setEnabled(true);
         ip_range_2_seekbar.setEnabled(true);
         ip_range_3_seekbar.setEnabled(true);
@@ -38,6 +47,7 @@ public class SweepNetworkActivity extends AppCompatActivity {
     public void disableUI() {
         stop_network_sweep_btn.setEnabled(true);
         start_network_sweep_btn.setEnabled(false);
+        log_btn.setEnabled(false);
         ip_range_1_seekbar.setEnabled(false);
         ip_range_2_seekbar.setEnabled(false);
         ip_range_3_seekbar.setEnabled(false);
@@ -64,6 +74,7 @@ public class SweepNetworkActivity extends AppCompatActivity {
 
         start_network_sweep_btn = findViewById(R.id.button_network_sweep);
         stop_network_sweep_btn = findViewById(R.id.button_stop);
+        log_btn = findViewById(R.id.button_log);
 
         SweepNetwork sweepNetwork = new SweepNetwork();
 
@@ -143,6 +154,58 @@ public class SweepNetworkActivity extends AppCompatActivity {
         stop_network_sweep_btn.setOnClickListener(view -> {
             sweepNetwork.kill();
             stop_network_sweep_btn.setEnabled(false);
+        });
+
+        log_btn.setOnClickListener(view -> {
+            String txt = console.getText().toString();
+            if (!txt.trim().isEmpty()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Save log");
+                final EditText input = new EditText(this);
+                final LinearLayout linearLayout = new LinearLayout(this);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                layoutParams.setMargins(60, 10, 60, 10);
+
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                input.setHint("Enter a name for log");
+                input.setLayoutParams(layoutParams);
+                input.setFilters(new InputFilter[] { new InputFilter.LengthFilter(22) });
+                input.setSingleLine();
+
+                linearLayout.addView(input);
+                builder.setView(linearLayout);
+
+                builder.setPositiveButton("OK", (dialogInterface, i) -> {
+                    SharedPreferences sharedPreferences = getSharedPreferences("logs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    String key = input.getText().toString().trim();
+                    if (sharedPreferences.contains(key)) {
+                        AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                        builder2.setTitle("Warning");
+                        builder2.setMessage("There is already a log with this name.\n" +
+                                "Do you want to overwrite it?");
+                        builder2.setPositiveButton("Yes", (dialogInterface2, i2) -> {
+                            editor.putString(key, txt);
+                            editor.apply();
+                            Toast.makeText(this, "Log has been saved.", Toast.LENGTH_SHORT).show();
+                        });
+                        builder2.setNegativeButton("Cancel", (dialogInterface2, i2) ->
+                                dialogInterface2.cancel());
+
+                        builder2.show();
+                    } else {
+                        editor.putString(key, txt);
+                        editor.apply();
+                        Toast.makeText(this, "Log has been saved.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.cancel());
+
+                builder.show();
+            }
         });
     }
 }
