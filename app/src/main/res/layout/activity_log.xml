@@ -53,7 +53,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="8"
-        android:background="@drawable/console_tool_bg">
+        android:background="@drawable/console_tool_bg"
+        tools:ignore="SpeakableTextPresentCheck">
+
         <LinearLayout
             android:id="@+id/log_list"
             android:layout_width="match_parent"
