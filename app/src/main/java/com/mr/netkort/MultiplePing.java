@@ -52,7 +52,7 @@ public class MultiplePing extends Thread {
             this.context.runOnUiThread(() -> {
                 if (this.host_address.size() > 1) {
                     output_ui.setText(String.format("Pinging %d hosts\n", host_address.size()));
-                    output_ui.append(String.format("Timeout: %d"));
+                    output_ui.append(String.format("Timeout: %d\n"));
                 } else {
                     output_ui.setText("Pinging 1 host\n");
                 }
