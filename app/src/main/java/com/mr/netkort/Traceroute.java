@@ -50,6 +50,7 @@ public class Traceroute extends Thread {
             if (this.host_ip != null) {
                 this.context.runOnUiThread(() -> {
                     output_ui.setText(String.format("Traceroute to %s [%s]\n", this.host_address, this.host_ip));
+                    output_ui.append(String.format("Timeout: %d\nPacket hops: %d\n", this.timeout, this.packet_hop));
                     output_ui.append(Utility.getDateTime(this.calendar) + "\n\n");
                 });
 
