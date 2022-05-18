@@ -88,7 +88,7 @@ public class LogActivity extends AppCompatActivity {
             textView.setLayoutParams(textParams);
             textView.setGravity(Gravity.CENTER);
             textView.setText(key);
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             Typeface font = ResourcesCompat.getFont(this, R.font.opensans);
             textView.setTypeface(font);
 
