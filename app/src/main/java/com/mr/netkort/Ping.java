@@ -50,6 +50,7 @@ public class Ping extends Thread {
             if (this.host_ip != null) {
                 this.context.runOnUiThread(() -> {
                     output_ui.setText(String.format("Pinging %s [%s]\n", this.host_address, this.host_ip));
+                    output_ui.append(String.format("Timeout: %d", this.timeout));
                     output_ui.append(Utility.getDateTime(this.calendar) + "\n\n");
                 });
                 for (int i = 0; i < this.packet_count;) {
