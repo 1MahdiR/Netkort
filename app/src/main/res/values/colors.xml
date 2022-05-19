@@ -10,4 +10,6 @@
     <color name="gray_1000">#333333</color>
     <color name="gray_500">#888888</color>
     <color name="blue_500">#0050ED</color>
+    <color name="ubuntu">#5e2750</color>
+    <color name="kali">#232935</color>
 </resources>
