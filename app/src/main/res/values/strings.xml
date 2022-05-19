@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">netkort</string>
+    <string name="about">Netkort : 1.0v\n\nA set of tools to observe your network.\nBy Amir-Mahdi Rasouli\n\n<a href="https://github.com/1MahdiR">Github</a></string>
 </resources>
