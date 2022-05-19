@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -107,6 +108,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString("theme", theme_temp.get());
             }
             editor.apply();
+            Toast.makeText(this, "Settings have been saved.", Toast.LENGTH_SHORT).show();
         });
     }
 }
