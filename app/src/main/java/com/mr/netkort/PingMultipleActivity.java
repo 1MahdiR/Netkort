@@ -2,16 +2,20 @@ package com.mr.netkort;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.util.TypedValue;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +24,8 @@ import java.util.ArrayList;
 
 public class PingMultipleActivity extends AppCompatActivity {
 
+    TextView console;
+    ScrollView console_bg;
     LinearLayout hosts_layer;
     Button push_input;
     Button pop_input;
@@ -70,7 +76,8 @@ public class PingMultipleActivity extends AppCompatActivity {
 
         MultiplePing ping = new MultiplePing();
 
-        TextView console = findViewById(R.id.console_text);
+        console = findViewById(R.id.console_text);
+        console_bg = findViewById(R.id.console);
 
         hosts_layer = findViewById(R.id.hosts);
         push_input = findViewById(R.id.push_input);
@@ -81,6 +88,27 @@ public class PingMultipleActivity extends AppCompatActivity {
         start_ping_btn = findViewById(R.id.button_ping);
         stop_ping_btn = findViewById(R.id.button_stop);
         log_btn = findViewById(R.id.button_log);
+
+        SharedPreferences sharedPreferences_settings = getSharedPreferences("settings", MODE_PRIVATE);
+        String theme = sharedPreferences_settings.getString("theme", "default");
+        int size = sharedPreferences_settings.getInt("text_size", 14);
+
+        switch (theme) {
+            case "default":
+                console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.console_bg));
+                console.setTypeface(ResourcesCompat.getFont(this, R.font.opensans));
+                break;
+            case "ubuntu":
+                console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.ubuntu_bg));
+                console.setTypeface(ResourcesCompat.getFont(this, R.font.ubuntu));
+                break;
+            case "kali":
+                console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.kali_bg));
+                console.setTypeface(ResourcesCompat.getFont(this, R.font.firacode));
+                break;
+        }
+
+        console.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
 
         push_input.setOnClickListener((view) -> {
             EditText et = new EditText(this);

@@ -2,16 +2,20 @@ package com.mr.netkort;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.util.TypedValue;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +23,7 @@ import android.widget.Toast;
 public class PortScanActivity extends AppCompatActivity {
 
     TextView console;
+    ScrollView console_bg;
     TextView host_address;
     EditText port_start, port_end;
 
@@ -58,6 +63,7 @@ public class PortScanActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         console = findViewById(R.id.console_text);
+        console_bg = findViewById(R.id.console);
         host_address = findViewById(R.id.host_address);
         packet_timeout_seek_bar = findViewById(R.id.packet_timeout_seek_bar);
         packet_timeout_text = findViewById(R.id.packet_timeout_text);
@@ -66,6 +72,27 @@ public class PortScanActivity extends AppCompatActivity {
         start_port_scan = findViewById(R.id.button_port_scan);
         stop_port_scan = findViewById(R.id.button_stop);
         log_btn = findViewById(R.id.button_log);
+
+        SharedPreferences sharedPreferences_settings = getSharedPreferences("settings", MODE_PRIVATE);
+        String theme = sharedPreferences_settings.getString("theme", "default");
+        int size = sharedPreferences_settings.getInt("text_size", 14);
+
+        switch (theme) {
+            case "default":
+                console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.console_bg));
+                console.setTypeface(ResourcesCompat.getFont(this, R.font.opensans));
+                break;
+            case "ubuntu":
+                console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.ubuntu_bg));
+                console.setTypeface(ResourcesCompat.getFont(this, R.font.ubuntu));
+                break;
+            case "kali":
+                console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.kali_bg));
+                console.setTypeface(ResourcesCompat.getFont(this, R.font.firacode));
+                break;
+        }
+
+        console.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
 
         packet_timeout_seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 

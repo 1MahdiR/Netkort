@@ -2,6 +2,7 @@ package com.mr.netkort;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.annotation.SuppressLint;
@@ -12,6 +13,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ import java.util.Set;
 public class LogActivity extends AppCompatActivity {
 
     TextView console;
+    ScrollView console_bg;
     LinearLayout log_list;
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -32,7 +35,29 @@ public class LogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log);
 
         console = findViewById(R.id.console_text);
+        console_bg = findViewById(R.id.console);
         log_list = findViewById(R.id.log_list);
+
+        SharedPreferences sharedPreferences_settings = getSharedPreferences("settings", MODE_PRIVATE);
+        String theme = sharedPreferences_settings.getString("theme", "default");
+        int size = sharedPreferences_settings.getInt("text_size", 14);
+
+        switch (theme) {
+            case "default":
+                console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.console_bg));
+                console.setTypeface(ResourcesCompat.getFont(this, R.font.opensans));
+                break;
+            case "ubuntu":
+                console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.ubuntu_bg));
+                console.setTypeface(ResourcesCompat.getFont(this, R.font.ubuntu));
+                break;
+            case "kali":
+                console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.kali_bg));
+                console.setTypeface(ResourcesCompat.getFont(this, R.font.firacode));
+                break;
+        }
+
+        console.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
 
         SharedPreferences sharedPreferences = getSharedPreferences("logs", MODE_PRIVATE);
         Map<String, ?> map = sharedPreferences.getAll();
