@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.util.TypedValue;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -36,6 +39,30 @@ public class SettingsActivity extends AppCompatActivity {
         save_btn = findViewById(R.id.button_save);
         console.setMovementMethod(LinkMovementMethod.getInstance());
 
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+        String theme = sharedPreferences.getString("theme", "default");
+        int size = sharedPreferences.getInt("text_size", 14);
+        AtomicReference<String> theme_temp = new AtomicReference<>("");
+
+        text_size.setProgress((size-12)/2);
+
+        switch (theme) {
+            case "default":
+                console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.console_bg));
+                console.setTypeface(ResourcesCompat.getFont(this, R.font.opensans));
+                break;
+            case "ubuntu":
+                console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.ubuntu_bg));
+                console.setTypeface(ResourcesCompat.getFont(this, R.font.ubuntu));
+                break;
+            case "kali":
+                console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.kali_bg));
+                console.setTypeface(ResourcesCompat.getFont(this, R.font.firacode));
+                break;
+        }
+
+        console.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+
         text_size.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -56,16 +83,26 @@ public class SettingsActivity extends AppCompatActivity {
         default_theme_btn.setOnClickListener(view -> {
             console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.console_bg));
             console.setTypeface(ResourcesCompat.getFont(this, R.font.opensans));
+            theme_temp.set("default");
         });
 
         ubuntu_theme_btn.setOnClickListener(view -> {
             console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.ubuntu_bg));
             console.setTypeface(ResourcesCompat.getFont(this, R.font.ubuntu));
+            theme_temp.set("ubuntu");
         });
 
         kali_theme_btn.setOnClickListener(view -> {
             console_bg.setBackground(AppCompatResources.getDrawable(this, R.drawable.kali_bg));
             console.setTypeface(ResourcesCompat.getFont(this, R.font.firacode));
+            theme_temp.set("kali");
+        });
+
+        save_btn.setOnClickListener(view -> {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("size", (text_size.getProgress()*2 + 12));
+            editor.putString("theme", theme_temp.get());
+            editor.apply();
         });
     }
 }
