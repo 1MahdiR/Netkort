@@ -100,8 +100,12 @@ public class SettingsActivity extends AppCompatActivity {
 
         save_btn.setOnClickListener(view -> {
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("size", (text_size.getProgress()*2 + 12));
-            editor.putString("theme", theme_temp.get());
+            editor.putInt("text_size", text_size.getProgress() * 2 + 12);
+            if (theme_temp.get().isEmpty()) {
+                editor.putString("theme", theme);
+            } else {
+                editor.putString("theme", theme_temp.get());
+            }
             editor.apply();
         });
     }
