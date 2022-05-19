@@ -14,38 +14,56 @@
         android:theme="@style/Theme.Netkort">
         <activity
             android:name=".SettingsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".LogActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".SweepNetworkActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".TracerouteActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".PortScanActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".PingMultipleActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".PingSingleActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".MainMenu"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".SplashActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
