@@ -144,7 +144,7 @@ public class PortScanActivity extends AppCompatActivity {
             }
 
             try {
-                int packet_timeout = packet_timeout_seek_bar.getProgress() + 1;
+                int packet_timeout = packet_timeout_seek_bar.getProgress();
 
                 portScan.setParams(this, console, host_address_str, packet_timeout, start, end);
 

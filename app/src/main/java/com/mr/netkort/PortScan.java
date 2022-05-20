@@ -59,7 +59,11 @@ public class PortScan extends Thread {
                 this.context.runOnUiThread(() -> {
                     output_ui.setText(String.format("Checking ports %d to %d on %s [%s]\n",
                             this.port_start, this.port_end, this.host_address, this.host_ip));
-                    output_ui.append(String.format("Timeout: %d\n", this.timeout));
+                    if (this.timeout == 0) {
+                        output_ui.append("Timeout: 0.5\n");
+                    } else {
+                        output_ui.append(String.format("Timeout: %d\n", this.timeout));
+                    }
                     output_ui.append(Utility.getDateTime(this.calendar) + "\n\n");
                 });
                 for (int port = this.port_start; port <= port_end; port++) {
