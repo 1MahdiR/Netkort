@@ -84,26 +84,26 @@ public class LogActivity extends AppCompatActivity {
                 }
             });
 
-            linearLayout.setOnLongClickListener(view -> {
+            ImageView imageView = new ImageView(this);
+            LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(101, 137, 1);
+            imageView.setLayoutParams(imageParams);
+            imageView.setImageDrawable(getDrawable(R.drawable.icon_remove_log));
+            imageView.setClickable(true);
+
+            imageView.setOnClickListener(view -> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Delete log");
-                builder.setMessage("Do want to delete this log?");
+                builder.setMessage(String.format("Do want to delete log '%s'?", key));
                 builder.setPositiveButton("Delete it", (dialogInterface, i) -> {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.remove(key);
                     editor.apply();
-                    log_list.removeView(view);
+                    log_list.removeView(linearLayout);
                 });
                 builder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.cancel());
 
                 builder.show();
-                return false;
             });
-
-            ImageView imageView = new ImageView(this);
-            LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(101, 137, 1);
-            imageView.setLayoutParams(imageParams);
-            imageView.setImageDrawable(getDrawable(R.drawable.log_icon));
 
             TextView textView = new TextView(this);
             LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(220,
