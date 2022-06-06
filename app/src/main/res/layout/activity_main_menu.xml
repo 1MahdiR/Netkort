@@ -188,7 +188,7 @@
                         android:layout_width="101dp"
                         android:layout_height="137dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/netkort_icon_traceroute"
+                        app:srcCompat="@drawable/netkort_icon_speed_test"
                         android:contentDescription="icon_speed_test" />
 
                     <TextView
