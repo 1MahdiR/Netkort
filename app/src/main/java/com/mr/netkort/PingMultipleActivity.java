@@ -160,6 +160,11 @@ public class PingMultipleActivity extends AppCompatActivity {
 
         start_ping_btn.setOnClickListener(view -> {
 
+            if (hosts.size() == 0) {
+                Toast.makeText(this, "Enter at least one host address", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             Thread ping_thread = new Thread(ping);
 
             ArrayList<String> host_addresses = new ArrayList<>();
