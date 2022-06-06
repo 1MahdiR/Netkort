@@ -39,6 +39,10 @@ public class SpeedTest extends Thread {
         this.calendar = Calendar.getInstance();
         InputStream input;
         HttpURLConnection connection = null;
+        long total_count = 0;
+        long average_time_1 = 0;
+        long average_time_2 = 0;
+        float max_rate = 0f;
 
         try {
             this.context.runOnUiThread(() -> {
@@ -57,47 +61,47 @@ public class SpeedTest extends Thread {
                 });
                 sleep(4000);
             }
+            average_time_1 = System.currentTimeMillis();
 
-            connection = (HttpURLConnection) url.openConnection();
-            connection.connect();
-
-            if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                throw new InterruptedException();
-            }
-
-            input = connection.getInputStream();
-
-            long time1 = System.currentTimeMillis();
-            long time2;
-            long count = 0;
-
-            byte[] data = new byte[4096];
-            while (input.read(data) != -1) {
+            while (true) {
                 if (!this.isRunning) { throw new InterruptedException(); }
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
 
-                count += 4096;
-                time2 = System.currentTimeMillis();
-                float dl_time_temp = (time2-time1)/1000f;
-                float bytes = (float)(count / 1000000);
+                if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                    throw new InterruptedException();
+                }
 
-                this.context.runOnUiThread(() -> {
-                    output_ui.setText("Testing download throughput\n");
-                    output_ui.append(Utility.getDateTime(this.calendar) + "\n\nDownload rate: ");
-                    output_ui.append(String.format("%f MBps", bytes/dl_time_temp));
-                });
+                input = connection.getInputStream();
+
+                long time1 = System.currentTimeMillis();
+                long time2;
+                long count = 0;
+
+                byte[] data = new byte[4096];
+                while (input.read(data) != -1) {
+                    if (!this.isRunning) { throw new InterruptedException(); }
+
+                    count += 4096;
+                    total_count += 4096;
+                    time2 = System.currentTimeMillis();
+                    float dl_time_temp = (time2-time1)/1000f;
+                    float bytes = (float)(count / 1000000);
+                    float rate = bytes/dl_time_temp;
+
+                    this.context.runOnUiThread(() -> {
+                        output_ui.setText("Testing download throughput\n");
+                        output_ui.append(Utility.getDateTime(this.calendar) + "\n\nDownload rate: ");
+                        output_ui.append(String.format("%.3f MBps", rate));
+                    });
+
+                    if (rate > max_rate)
+                        max_rate = rate;
+                }
             }
-
-            time2 = System.currentTimeMillis();
-
-            float dl_time = (time2-time1)/1000f;
-
-            this.context.runOnUiThread(() -> {
-                output_ui.setText("Testing download throughput\n");
-                output_ui.append(Utility.getDateTime(this.calendar) + "\n\nDownload rate: ");
-                output_ui.append(String.format("%f MBps", 4f/dl_time));
-            });
 
         } catch (IOException | InterruptedException e) {
+            average_time_2 = System.currentTimeMillis();
             e.printStackTrace();
         } finally {
 
@@ -108,6 +112,19 @@ public class SpeedTest extends Thread {
                 output_ui.append("\n\n\n------- stopped!");
                 ((SpeedTestActivity) context).enableUI();
             });
+
+            if (total_count > 0) {
+                float average_dl_time = (average_time_2 - average_time_1)/1000f;
+                float bytes = (float)(total_count / 1000000);
+                float average_rate = bytes/average_dl_time;
+                float max_rate_temp = max_rate;
+
+                this.context.runOnUiThread(() -> {
+                    output_ui.append(String.format("\n\n\nMaximum download rate: %.3f\n", max_rate_temp));
+                    output_ui.append(String.format("Average download rate: %.3f", average_rate));
+                    ((SpeedTestActivity) context).enableUI();
+                });
+            }
         }
     }
 }
