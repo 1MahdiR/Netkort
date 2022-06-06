@@ -93,6 +93,8 @@ public class PortScanActivity extends AppCompatActivity {
         }
 
         console.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        if (sharedPreferences_settings.getBoolean("console_help", true))
+            console.setText(getResources().getText(R.string.port_scan_note));
 
         packet_timeout_seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 

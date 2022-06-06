@@ -70,6 +70,8 @@ public class SpeedTestActivity extends AppCompatActivity {
         }
 
         console.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        if (sharedPreferences_settings.getBoolean("console_help", true))
+            console.setText(getResources().getText(R.string.speed_test_note));
 
         start_speed_test.setOnClickListener(view -> {
 

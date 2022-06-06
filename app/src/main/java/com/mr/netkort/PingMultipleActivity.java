@@ -109,6 +109,8 @@ public class PingMultipleActivity extends AppCompatActivity {
         }
 
         console.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        if (sharedPreferences_settings.getBoolean("console_help", true))
+            console.setText(getResources().getText(R.string.ping_multiple_note));
 
         push_input.setOnClickListener((view) -> {
             EditText et = new EditText(this);

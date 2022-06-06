@@ -58,6 +58,8 @@ public class LogActivity extends AppCompatActivity {
         }
 
         console.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        if (sharedPreferences_settings.getBoolean("console_help", true))
+            console.setText(getResources().getText(R.string.log_note));
 
         SharedPreferences sharedPreferences = getSharedPreferences("logs", MODE_PRIVATE);
         Map<String, ?> map = sharedPreferences.getAll();
