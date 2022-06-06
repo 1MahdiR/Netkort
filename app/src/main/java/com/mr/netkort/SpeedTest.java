@@ -120,8 +120,8 @@ public class SpeedTest extends Thread {
                 float max_rate_temp = max_rate;
 
                 this.context.runOnUiThread(() -> {
-                    output_ui.append(String.format("\n\n\nMaximum download rate: %.3f\n", max_rate_temp));
-                    output_ui.append(String.format("Average download rate: %.3f", average_rate));
+                    output_ui.append(String.format("\n\n\nMaximum download rate: %.3f MBps\n", max_rate_temp));
+                    output_ui.append(String.format("Average download rate: %.3f MBpx", average_rate));
                     ((SpeedTestActivity) context).enableUI();
                 });
             }
