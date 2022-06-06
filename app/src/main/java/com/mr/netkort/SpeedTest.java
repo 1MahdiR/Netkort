@@ -2,7 +2,9 @@ package com.mr.netkort;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.view.Gravity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,6 +48,16 @@ public class SpeedTest extends Thread {
 
             URL url = new URL("https://drive.google.com/uc?export=download&id=1upG0EwvgN0BmzaoJ-RyITHwAn_jp6Qbq");
 
+            while (!Utility.ping("8.8.8.8", 4)) {
+                if (!this.isRunning) { throw new InterruptedException(); }
+                this.context.runOnUiThread(() -> {
+                    Toast toast = Toast.makeText(context, "Network connection error. Trying again...", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 500);
+                    toast.show();
+                });
+                sleep(4000);
+            }
+
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
 
@@ -71,7 +83,7 @@ public class SpeedTest extends Thread {
                 this.context.runOnUiThread(() -> {
                     output_ui.setText("Testing download throughput\n");
                     output_ui.append(Utility.getDateTime(this.calendar) + "\n\nDownload rate: ");
-                    output_ui.append(String.format("%f MBps", bytes/dl_time_temp) + "\n\n");
+                    output_ui.append(String.format("%f MBps", bytes/dl_time_temp));
                 });
             }
 
@@ -82,7 +94,7 @@ public class SpeedTest extends Thread {
             this.context.runOnUiThread(() -> {
                 output_ui.setText("Testing download throughput\n");
                 output_ui.append(Utility.getDateTime(this.calendar) + "\n\nDownload rate: ");
-                output_ui.append(String.format("%f MBps", 4f/dl_time) + "\n\n");
+                output_ui.append(String.format("%f MBps", 4f/dl_time));
             });
 
         } catch (IOException | InterruptedException e) {
@@ -93,7 +105,7 @@ public class SpeedTest extends Thread {
                 connection.disconnect();
 
             this.context.runOnUiThread(() -> {
-                output_ui.append("\n------- stopped!");
+                output_ui.append("\n\n\n------- stopped!");
                 ((SpeedTestActivity) context).enableUI();
             });
         }
