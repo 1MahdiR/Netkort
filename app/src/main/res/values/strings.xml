@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">netkort</string>
     <string name="about">Netkort : 1.0v\n\nA set of tools to observe your network.\nBy Amir-Mahdi Rasouli\n\n<a href="https://github.com/1MahdiR">Github</a></string>
-    <string name="speed_test_note">This tool calculates your download throughput.\nIt measures your download traffic and divide it by time.\nThis may depend on several factors, such as WiFi signal strength, etc.\n\nPress \'SPEED TEST\' to start.</string>
+    <string name="speed_test_note">This tool calculates your download throughput.\nIt measures your download traffic and divide it by time.\nThe result may depend on several factors, such as WiFi signal strength, etc.\n\nPress \'SPEED TEST\' to start.</string>
 </resources>
