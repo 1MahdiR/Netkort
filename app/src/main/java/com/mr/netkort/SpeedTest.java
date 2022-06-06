@@ -49,7 +49,7 @@ public class SpeedTest extends Thread {
 
             url = new URL("https://drive.google.com/uc?export=download&id=1upG0EwvgN0BmzaoJ-RyITHwAn_jp6Qbq");
 
-            long time1 = System.currentTimeMillis();
+
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
 
@@ -58,11 +58,34 @@ public class SpeedTest extends Thread {
             }
 
             input = connection.getInputStream();
-            long time2 = System.currentTimeMillis();
+
+            long time1 = System.currentTimeMillis();
+            long time2;
+            long count = 0;
+
+            byte[] data = new byte[4096];
+            while (input.read(data) != -1) {
+                if (!this.isRunning) { throw new InterruptedException(); }
+
+                count += 4096;
+                time2 = System.currentTimeMillis();
+                float dl_time_temp = (time2-time1)/1000f;
+                float bits = (float)(count / 1000000);
+
+                this.context.runOnUiThread(() -> {
+                    output_ui.setText("Testing download throughput\n");
+                    output_ui.append(Utility.getDateTime(this.calendar) + "\n\nDownload rate: ");
+                    output_ui.append(String.format("%f MBps", bits/dl_time_temp) + "\n\n");
+                });
+            }
+
+            time2 = System.currentTimeMillis();
 
             float dl_time = (time2-time1)/1000f;
 
             this.context.runOnUiThread(() -> {
+                output_ui.setText("Testing download throughput\n");
+                output_ui.append(Utility.getDateTime(this.calendar) + "\n\nDownload rate: ");
                 output_ui.append(String.format("%f MBps", 4f/dl_time) + "\n\n");
             });
 
