@@ -2,6 +2,7 @@ package com.mr.netkort;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.util.TypedValue;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ public class SettingsActivity extends AppCompatActivity {
     TextView default_theme_btn;
     TextView ubuntu_theme_btn;
     TextView kali_theme_btn;
+    CheckBox console_help;
     Button save_btn;
 
     @Override
@@ -37,15 +40,19 @@ public class SettingsActivity extends AppCompatActivity {
         default_theme_btn = findViewById(R.id.default_theme_btn);
         ubuntu_theme_btn = findViewById(R.id.ubuntu_theme_btn);
         kali_theme_btn = findViewById(R.id.kali_theme_btn);
+        console_help = findViewById(R.id.console_help);
+
         save_btn = findViewById(R.id.button_save);
         console.setMovementMethod(LinkMovementMethod.getInstance());
 
         SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         String theme = sharedPreferences.getString("theme", "default");
         int size = sharedPreferences.getInt("text_size", 14);
+        boolean is_console_help = sharedPreferences.getBoolean("console_help", true);
         AtomicReference<String> theme_temp = new AtomicReference<>("");
 
         text_size.setProgress((size-12)/2);
+        console_help.setChecked(is_console_help);
 
         switch (theme) {
             case "default":
@@ -107,6 +114,7 @@ public class SettingsActivity extends AppCompatActivity {
             } else {
                 editor.putString("theme", theme_temp.get());
             }
+            editor.putBoolean("console_help", console_help.isChecked());
             editor.apply();
             Toast.makeText(this, "Settings have been saved.", Toast.LENGTH_SHORT).show();
         });
