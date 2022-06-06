@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">netkort</string>
     <string name="about">Netkort : 1.0v\n\nA set of tools to observe your network.\nBy Amir-Mahdi Rasouli\n\n<a href="https://github.com/1MahdiR">Github</a></string>
+    <string name="ping_single_note">Simple \'ping\' command. Sends ICMP packets to a host and waits for reply.\n\nSet \'packet count\' to max value to send ICMP packets continuously. Packet timeout is time to wait for a response.</string>
+    <string name="ping_multiple_note">Sends ICMP packet to multiple hosts.\n\nAdd a host address field with \'+\' button. Packet timeout is time to wait for a response.</string>
+    <string name="port_scan_note">Creates TCP connections with given host address and port range.\n\nTimeout is the time to wait for accepting the connection request.</string>
+    <string name="traceroute_note">Traceroute the given host address.\n\nThis tool starts sending ICMP packet with ttl=1 (time to live). If the ttl exceeds or the ICMP packet gets no response the ttl will be increased by 1 and then another ICMP packet will be sent to host address.\nThis process continues until the ICMP packet reaches the host address.\n\nMaximum hops is the maximum number of ttl. Packet timeout is time to wait for a response.</string>
     <string name="speed_test_note">This tool calculates your download throughput.\nIt measures your download traffic and divide it by time.\nThe result may depend on several factors, such as WiFi signal strength, etc.\n\nPress \'SPEED TEST\' to start.</string>
+    <string name="network_sweep_note">Sends ICMP packet to every IP in \'IP range\'.\n\nThe main usage of this tool is finding all devices in your local network. So for example if your local network is 192.168.0.0, Try this range (192.168.1–255.1–255).</string>
+    <string name="log_note">Here you can read or delete the logs you saved before.</string>
 </resources>
