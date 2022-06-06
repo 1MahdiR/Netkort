@@ -4,10 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.widget.TextView;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Calendar;
@@ -17,7 +15,6 @@ public class SpeedTest extends Thread {
     private Activity context;
     private TextView output_ui;
     private Calendar calendar;
-    private URL url;
 
     private volatile boolean isRunning = true;
 
@@ -38,7 +35,7 @@ public class SpeedTest extends Thread {
     @Override
     public void run() {
         this.calendar = Calendar.getInstance();
-        InputStream input = null;
+        InputStream input;
         HttpURLConnection connection = null;
 
         try {
@@ -47,8 +44,7 @@ public class SpeedTest extends Thread {
                 output_ui.append(Utility.getDateTime(this.calendar) + "\n\nDownload rate: ");
             });
 
-            url = new URL("https://drive.google.com/uc?export=download&id=1upG0EwvgN0BmzaoJ-RyITHwAn_jp6Qbq");
-
+            URL url = new URL("https://drive.google.com/uc?export=download&id=1upG0EwvgN0BmzaoJ-RyITHwAn_jp6Qbq");
 
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
@@ -70,12 +66,12 @@ public class SpeedTest extends Thread {
                 count += 4096;
                 time2 = System.currentTimeMillis();
                 float dl_time_temp = (time2-time1)/1000f;
-                float bits = (float)(count / 1000000);
+                float bytes = (float)(count / 1000000);
 
                 this.context.runOnUiThread(() -> {
                     output_ui.setText("Testing download throughput\n");
                     output_ui.append(Utility.getDateTime(this.calendar) + "\n\nDownload rate: ");
-                    output_ui.append(String.format("%f MBps", bits/dl_time_temp) + "\n\n");
+                    output_ui.append(String.format("%f MBps", bytes/dl_time_temp) + "\n\n");
                 });
             }
 
