@@ -46,7 +46,7 @@ public class PortScan extends Thread {
         this.isRunning = true;
     }
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
     public void run() {
 

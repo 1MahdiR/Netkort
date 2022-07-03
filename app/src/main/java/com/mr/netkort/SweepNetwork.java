@@ -43,7 +43,7 @@ public class SweepNetwork extends Thread {
         this.isRunning = true;
     }
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
     public void run() {
         this.calendar = Calendar.getInstance();
@@ -122,18 +122,12 @@ public class SweepNetwork extends Thread {
                 }
             }
 
-            this.context.runOnUiThread(() -> {
-                output_ui.append("\nSweep complete.");
-            });
+            this.context.runOnUiThread(() -> output_ui.append("\nSweep complete."));
 
         } catch (InterruptedException e) {
-            this.context.runOnUiThread(() -> {
-                output_ui.append("\n------- stopped!");
-            });
+            this.context.runOnUiThread(() -> output_ui.append("\n------- stopped!"));
         } finally {
-            this.context.runOnUiThread(() -> {
-                ((SweepNetworkActivity) context).enableUI();
-            });
+            this.context.runOnUiThread(() -> ((SweepNetworkActivity) context).enableUI());
         }
     }
 }

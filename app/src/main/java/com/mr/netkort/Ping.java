@@ -38,7 +38,7 @@ public class Ping extends Thread {
         this.isRunning = true;
     }
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
     public void run() {
         this.calendar = Calendar.getInstance();
@@ -99,13 +99,9 @@ public class Ping extends Thread {
                             pt, pr, pl) + "\n");
                 });
             } else {
-                this.context.runOnUiThread(() -> {
-                    output_ui.append("\n------- stopped!");
-                });
+                this.context.runOnUiThread(() -> output_ui.append("\n------- stopped!"));
             }
-            this.context.runOnUiThread(() -> {
-                ((PingSingleActivity) context).enableUI();
-            });
+            this.context.runOnUiThread(() -> ((PingSingleActivity) context).enableUI());
         }
     }
 }

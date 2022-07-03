@@ -39,7 +39,7 @@ public class Traceroute extends Thread {
         this.isRunning = true;
     }
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
     public void run() {
         this.calendar = Calendar.getInstance();
@@ -72,9 +72,7 @@ public class Traceroute extends Thread {
                             }
                         });
                         if (i == this.packet_hop || stat.first == Stat.REACHED) {
-                            this.context.runOnUiThread(() -> {
-                                output_ui.append("\nTrace complete.");
-                            });
+                            this.context.runOnUiThread(() -> output_ui.append("\nTrace complete."));
                             break;
                         }
                         sleep(100);
@@ -91,13 +89,9 @@ public class Traceroute extends Thread {
                 });
             }
         } catch (InterruptedException e) {
-            this.context.runOnUiThread(() -> {
-                output_ui.append("\n------- stopped!");
-            });
+            this.context.runOnUiThread(() -> output_ui.append("\n------- stopped!"));
         } finally {
-            this.context.runOnUiThread(() -> {
-                ((TracerouteActivity) context).enableUI();
-            });
+            this.context.runOnUiThread(() -> ((TracerouteActivity) context).enableUI());
         }
     }
 }
