@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,7 +19,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/chopsic"
             android:gravity="center"
-            android:text="Netkort"
+            android:text="@string/app_name_cap"
             android:textColor="@color/blue_500"
             android:textSize="35sp" />
 
@@ -57,32 +56,25 @@
         android:gravity="bottom"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
+        <Button
+            android:id="@+id/button_speedtest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text="@string/btn_speed_test" />
 
-            <Button
-                android:id="@+id/button_speedtest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Speed test" />
+        <Button
+            android:id="@+id/button_stop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/btn_stop" />
 
-            <Button
-                android:id="@+id/button_stop"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="Stop" />
-
-            <Button
-                android:id="@+id/button_log"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="Save Log" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/button_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/btn_save_log" />
     </LinearLayout>
 
 </LinearLayout>

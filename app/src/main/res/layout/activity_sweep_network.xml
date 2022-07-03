@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/chopsic"
             android:gravity="center"
-            android:text="Netkort"
+            android:text="@string/app_name_cap"
             android:textColor="@color/blue_500"
             android:textSize="35sp" />
 
@@ -73,7 +73,8 @@
                 android:layout_marginTop="10dp"
                 android:text="1-255"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,7 +82,8 @@
                 android:layout_marginTop="10dp"
                 android:text="."
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
             <TextView
                 android:id="@+id/ip_text_2"
                 android:layout_width="wrap_content"
@@ -90,7 +92,8 @@
                 android:layout_marginTop="10dp"
                 android:text="1-255"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,7 +101,8 @@
                 android:layout_marginTop="10dp"
                 android:text="."
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
             <TextView
                 android:id="@+id/ip_text_3"
                 android:layout_width="wrap_content"
@@ -107,7 +111,8 @@
                 android:layout_marginTop="10dp"
                 android:text="1-255"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -115,7 +120,8 @@
                 android:layout_marginTop="10dp"
                 android:text="."
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
             <TextView
                 android:id="@+id/ip_text_4"
                 android:layout_width="wrap_content"
@@ -124,7 +130,8 @@
                 android:layout_marginTop="10dp"
                 android:text="1-255"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
@@ -133,14 +140,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="InefficientWeight,NestedWeights">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="IP range"
+                android:text="@string/ip_range"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -205,20 +213,20 @@
                 android:id="@+id/button_network_sweep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Network sweep" />
+                android:text="@string/btn_network_sweep" />
 
             <Button
                 android:id="@+id/button_stop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:text="Stop" />
+                android:text="@string/btn_stop" />
             <Button
                 android:id="@+id/button_log"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:text="Save Log" />
+                android:text="@string/btn_save_log" />
         </LinearLayout>
     </LinearLayout>
 

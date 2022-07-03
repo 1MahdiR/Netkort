@@ -21,286 +21,279 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/chopsic"
             android:gravity="center"
-            android:text="Netkort"
+            android:text="@string/app_name_cap"
             android:textColor="@color/blue_500"
             android:textSize="35sp" />
 
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.585"
+        tools:layout_editor_absoluteX="-2dp">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.585"
-            tools:layout_editor_absoluteX="-2dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ping_single_btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/icon_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginBottom="30dp">
 
-                <LinearLayout
-                    android:id="@+id/ping_single_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/icon_bg"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginBottom="30dp">
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="101dp"
+                    android:layout_height="137dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/icon_ping_single"
+                    android:contentDescription="@string/ping_single_image" />
 
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="101dp"
-                        android:layout_height="137dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/icon_ping_single"
-                        android:contentDescription="icon_ping_single" />
-
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:text="Ping a single host"
-                        android:fontFamily="@font/worksans"
-                        android:textSize="25sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ping_multiple_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/icon_bg"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginBottom="30dp">
-
-                    <ImageView
-                        android:id="@+id/imageView6"
-                        android:layout_width="101dp"
-                        android:layout_height="137dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/icon_ping_multiple"
-                        android:contentDescription="icon_ping_multiple" />
-
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:text="Ping multiple hosts"
-                        android:fontFamily="@font/worksans"
-                        android:textSize="25sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/port_scan_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/icon_bg"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginBottom="30dp">
-
-                    <ImageView
-                        android:id="@+id/imageView7"
-                        android:layout_width="101dp"
-                        android:layout_height="137dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/netkort_icon_port_scan"
-                        android:contentDescription="icon_port_scan" />
-
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:text="Port scan a host"
-                        android:fontFamily="@font/worksans"
-                        android:textSize="25sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/traceroute_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/icon_bg"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginBottom="30dp">
-
-                    <ImageView
-                        android:id="@+id/imageView8"
-                        android:layout_width="101dp"
-                        android:layout_height="137dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/netkort_icon_traceroute"
-                        android:contentDescription="icon_traceroute" />
-
-                    <TextView
-                        android:id="@+id/textView9"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:text="Traceroute a host"
-                        android:fontFamily="@font/worksans"
-                        android:textSize="25sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/speed_test_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/icon_bg"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginBottom="30dp">
-
-                    <ImageView
-                        android:id="@+id/imageView11"
-                        android:layout_width="101dp"
-                        android:layout_height="137dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/netkort_icon_speed_test"
-                        android:contentDescription="icon_speed_test" />
-
-                    <TextView
-                        android:id="@+id/textView13"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:text="Speed test"
-                        android:fontFamily="@font/worksans"
-                        android:textSize="25sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/sweep_network_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/icon_bg"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginBottom="30dp">
-
-                    <ImageView
-                        android:id="@+id/imageView10"
-                        android:layout_width="101dp"
-                        android:layout_height="137dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/netkort_icon_network_sweep"
-                        android:contentDescription="icon_network_sweep" />
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:text="Network sweep"
-                        android:fontFamily="@font/worksans"
-                        android:textSize="25sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/logs_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/icon_bg"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginBottom="30dp">
-
-                    <ImageView
-                        android:id="@+id/imageView9"
-                        android:layout_width="101dp"
-                        android:layout_height="137dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/log_icon_menu"
-                        android:contentDescription="icon_logs" />
-
-                    <TextView
-                        android:id="@+id/textView11"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:text="Logs"
-                        android:fontFamily="@font/worksans"
-                        android:textSize="25sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/settings_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/icon_bg"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_marginBottom="30dp">
-
-                    <ImageView
-                        android:id="@+id/imageView12"
-                        android:layout_width="101dp"
-                        android:layout_height="137dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/settings_icon"
-                        android:contentDescription="icon_settings" />
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="20dp"
-                        android:text="Settings"
-                        android:fontFamily="@font/worksans"
-                        android:textSize="25sp" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/ping_single_text"
+                    android:fontFamily="@font/worksans"
+                    android:textSize="25sp" />
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/ping_multiple_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/icon_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginBottom="30dp">
 
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="101dp"
+                    android:layout_height="137dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/icon_ping_multiple"
+                    android:contentDescription="@string/ping_multiple_image" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/ping_multiple_text"
+                    android:fontFamily="@font/worksans"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/port_scan_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/icon_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginBottom="30dp">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="101dp"
+                    android:layout_height="137dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/netkort_icon_port_scan"
+                    android:contentDescription="@string/port_scan_image" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/port_scan_text"
+                    android:fontFamily="@font/worksans"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/traceroute_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/icon_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginBottom="30dp">
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="101dp"
+                    android:layout_height="137dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/netkort_icon_traceroute"
+                    android:contentDescription="@string/traceroute_image" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/traceroute_text"
+                    android:fontFamily="@font/worksans"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/speed_test_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/icon_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginBottom="30dp">
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="101dp"
+                    android:layout_height="137dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/netkort_icon_speed_test"
+                    android:contentDescription="@string/speed_test_image" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/speed_test_text"
+                    android:fontFamily="@font/worksans"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sweep_network_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/icon_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginBottom="30dp">
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="101dp"
+                    android:layout_height="137dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/netkort_icon_network_sweep"
+                    android:contentDescription="@string/network_sweep_image" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/network_sweep_text"
+                    android:fontFamily="@font/worksans"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/logs_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/icon_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginBottom="30dp">
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="101dp"
+                    android:layout_height="137dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/log_icon_menu"
+                    android:contentDescription="@string/logs_image" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/logs_text"
+                    android:fontFamily="@font/worksans"
+                    android:textSize="25sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/settings_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/icon_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginBottom="30dp">
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="101dp"
+                    android:layout_height="137dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/settings_icon"
+                    android:contentDescription="@string/settings_image" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/settings_text"
+                    android:fontFamily="@font/worksans"
+                    android:textSize="25sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

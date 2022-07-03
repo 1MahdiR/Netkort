@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,7 +19,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/chopsic"
             android:gravity="center"
-            android:text="Netkort"
+            android:text="@string/app_name_cap"
             android:textColor="@color/blue_500"
             android:textSize="35sp" />
 
@@ -63,11 +62,12 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:hint="Host IP or address"
+            android:hint="@string/host_address_placeholder"
             android:inputType="text"
             android:minHeight="48dp"
             android:textColor="@color/white"
-            android:textColorHint="@color/gray_500" />
+            android:textColorHint="@color/gray_500"
+            android:importantForAutofill="no" />
 
         <LinearLayout
             android:id="@+id/packet_count"
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Maximum hops"
+                android:text="@string/max_hops"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -99,22 +99,24 @@
                 android:layout_marginStart="25dp"
                 android:text="30 hops"
                 android:textColor="@color/gray_500"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/packet_timeout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="NestedWeights">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Packet timeout"
+                android:text="@string/packet_timeout"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -133,7 +135,8 @@
                 android:layout_marginStart="25dp"
                 android:text="1 second"
                 android:textColor="@color/gray_500"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
@@ -147,21 +150,21 @@
                 android:id="@+id/button_traceroute"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Traceroute" />
+                android:text="@string/btn_traceroute" />
 
             <Button
                 android:id="@+id/button_stop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:text="Stop" />
+                android:text="@string/btn_stop" />
 
             <Button
                 android:id="@+id/button_log"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:text="Save Log" />
+                android:text="@string/btn_save_log" />
         </LinearLayout>
     </LinearLayout>
 

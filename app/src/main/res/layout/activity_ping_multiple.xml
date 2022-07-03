@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/chopsic"
             android:gravity="center"
-            android:text="Netkort"
+            android:text="@string/app_name_cap"
             android:textColor="@color/blue_500"
             android:textSize="35sp" />
 
@@ -81,14 +81,16 @@
                     android:layout_height="60dp"
                     android:text="-"
                     android:enabled="false"
-                    android:textSize="30sp"/>
+                    android:textSize="30sp"
+                    tools:ignore="ButtonStyle,HardcodedText" />
                 <Button
                     android:id="@+id/push_input"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:text="+"
                     android:textSize="30sp"
-                    android:layout_marginEnd="20dp"/>
+                    android:layout_marginEnd="20dp"
+                    tools:ignore="ButtonStyle,HardcodedText" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/packet_timeout"
@@ -104,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Packet timeout"
+                    android:text="@string/packet_timeout"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
@@ -123,7 +125,8 @@
                     android:layout_marginStart="25dp"
                     android:text="1 second"
                     android:textColor="@color/gray_500"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
         </LinearLayout>
@@ -138,20 +141,20 @@
             android:id="@+id/button_ping"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ping" />
+            android:text="@string/btn_ping" />
 
         <Button
             android:id="@+id/button_stop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:text="Stop" />
+            android:text="@string/btn_stop" />
         <Button
             android:id="@+id/button_log"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:text="Save Log" />
+            android:text="@string/btn_save_log" />
     </LinearLayout>
 
 </LinearLayout>
