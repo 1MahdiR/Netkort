@@ -97,7 +97,7 @@ public class PingSingleActivity extends AppCompatActivity {
 
         packet_count_seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
-            @SuppressLint("DefaultLocale")
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 switch (i) {
