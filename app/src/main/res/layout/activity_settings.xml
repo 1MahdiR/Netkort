@@ -59,7 +59,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/packet_count"
+            android:id="@+id/console_text_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -84,7 +84,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/packet_timeout"
+            android:id="@+id/console_theme"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
