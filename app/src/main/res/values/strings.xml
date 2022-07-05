@@ -37,7 +37,7 @@
     <string name="console_help">Show help on console</string>
     <string name="ip_range">IP range</string>
     <string name="max_hops">Maximum hops</string>
-    <string name="about">Netkort : 1.0v\n\nA set of tools to observe your network.\nBy Amir-Mahdi Rasouli\n\n<a href="https://github.com/1MahdiR">Github</a></string>
+    <string name="about">Netkort : 1.0v\n\nA set of tools to observe your network.\nBy Amir-Mahdi Rasouli\n\n<a href="https://github.com/1MahdiR/Netkort">Github</a></string>
     <string name="ping_single_note">Simple \'ping\' command. Sends ICMP packets to a host and waits for reply.\n\nSet \'packet count\' to max value to send ICMP packets continuously. Packet timeout is time to wait for a response.</string>
     <string name="ping_multiple_note">Sends ICMP packet to multiple hosts.\n\nAdd a host address field with \'+\' button. Packet timeout is time to wait for a response.</string>
     <string name="port_scan_note">Creates TCP connections with given host address and port range.\n\nTimeout is the time to wait for accepting the connection request.</string>
