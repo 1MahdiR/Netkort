@@ -19,8 +19,8 @@ Each tool and utility has basic functionality and is easy to understand.
 ![sc_1](screenshots/sc_1.png)
 ![sc_2](screenshots/sc_2.png)
 ![sc_3](screenshots/sc_3.png)
-![sc_4](screenshots/sc_4.pn)
-![sc_5](screenshots/sc_5.pn)
+![sc_4](screenshots/sc_4.png)
+![sc_5](screenshots/sc_5.png)
 
 ## Contact
 - [Mahdi-R](https://github.com/1MahdiR) : a.m.rasouli.n@gmail.com
