@@ -16,11 +16,11 @@ Each tool and utility has basic functionality and is easy to understand.
 
 ## Screenshots
 
-<img src="screenshots/sc_1.png" alt="sc_1" style="width:720px; height:1280"/>
-<img src="screenshots/sc_2.png" alt="sc_2" style="width:720px; height:1280"/>
-<img src="screenshots/sc_3.png" alt="sc_3" style="width:720px; height:1280"/>
-<img src="screenshots/sc_4.png" alt="sc_4" style="width:720px; height:1280"/>
-<img src="screenshots/sc_5.png" alt="sc_5" style="width:720px; height:1280"/>
+<img src="screenshots/sc_1.png" alt="sc_1" style="width:360px; height:640px"/>
+<img src="screenshots/sc_2.png" alt="sc_2" style="width:360px; height:640px"/>
+<img src="screenshots/sc_3.png" alt="sc_3" style="width:360px; height:640px"/>
+<img src="screenshots/sc_4.png" alt="sc_4" style="width:360px; height:640px"/>
+<img src="screenshots/sc_5.png" alt="sc_5" style="width:360px; height:640px"/>
 
 ## Contact
 - [Mahdi-R](https://github.com/1MahdiR) : a.m.rasouli.n@gmail.com
